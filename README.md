@@ -106,6 +106,9 @@ Run the tests with:
 pnpm test
 ```
 
+## Preview
+- `![TodoPro Preview](public/todopro-preview.png)`
+
 ## License
 
 This project is open-source.
