@@ -9,23 +9,25 @@ export function useFilterTodos(todos: Todo[]) {
 
   const filteredTodos = useMemo(() => {
     const result = todos.filter((t) => {
-      const filterTodo = t.todo
-        .toLowerCase()
-        .includes(search.toLocaleLowerCase());
+      const matchesSearch = t.todo
+        .toLocaleLowerCase()
+        .includes(search.trim().toLocaleLowerCase());
+      const matchesStatus =
+        filter === "completed"
+          ? t.completed
+          : filter === "active"
+            ? !t.completed
+            : true;
 
-      if (filter === "completed") {
-        return filterTodo && t.completed;
-      }
-
-      if (filter === "active") {
-        return filterTodo && !t.completed;
-      }
-
-      if (priorityFilter !== "all") {
-        return filterTodo && t.priority === priorityFilter;
-      }
-
-      return filterTodo;
+      const matchesPriority =
+        priorityFilter === "high"
+          ? t.priority === "high"
+          : priorityFilter === "medium"
+            ? t.priority === "medium"
+            : priorityFilter === "low"
+              ? t.priority === "low"
+              : true;
+      return matchesPriority && matchesSearch && matchesStatus; 
     });
 
     result.sort((a: Todo, b: Todo) => {
@@ -36,7 +38,7 @@ export function useFilterTodos(todos: Todo[]) {
 
     return result;
   }, [todos, filter, search, isAscending, priorityFilter]);
-  
+
   return {
     filteredTodos,
     setSearch,
