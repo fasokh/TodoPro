@@ -23,12 +23,15 @@ const TodoForm = ({ onForm, form, editingId, onSave }: FromTodoProps) => {
         onChange={(e) =>
           onForm((prev) => ({ ...prev, priority: e.target.value as Priority }))
         }
+        className="w-full border border-gray-300 rounded-lg p-2"
       >
         <option value="high">High</option>
         <option value="medium">Medium</option>
         <option value="low">Low</option>
       </select>
+      <label htmlFor="todo-date">Due Date</label>
       <input
+        id="todo-date"
         type="date"
         value={form.date}
         onChange={(e) => onForm((prev) => ({ ...prev, date: e.target.value }))}
