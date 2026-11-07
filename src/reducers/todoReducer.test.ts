@@ -16,6 +16,7 @@ export const todos = [
     priority: "medium" as const,
     date: "2026-09-14",
   },
+  
 ];
 
 describe("todoReducer", () => {
@@ -78,7 +79,7 @@ describe("todoReducer", () =>
   it("should add an item", () => {
     const result = todoReducer(todos, {
       type: "ADD_TODO",
-      payload: { id: 3,todo: "React", priority: "high", date: "2026-09-20" },
+      payload: { id: 3, todo: "React", priority: "high", date: "2026-09-20" },
     });
 
     expect(result).toHaveLength(3);
@@ -87,7 +88,7 @@ describe("todoReducer", () =>
     expect(result[2].date).toBe("2026-09-20");
     expect(result[2].priority).toBe("high");
     expect(typeof result[2].id).toBe("number");
-    expect(result[2].id).toBe(3)
+    expect(result[2].id).toBe(3);
   }));
 
 describe("todoReducer", () =>
@@ -104,8 +105,7 @@ describe("todoReducer", () =>
 
     expect(res[1].priority).toBe("high");
     expect(todos).toEqual(previuosTodos);
-  }),
-);
+  }));
 
 // state قبلی
 //    │
